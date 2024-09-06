@@ -5,4 +5,5 @@ export interface ApiResponse {
   message: string;
   isAcceptingMessages?: boolean; // here the ? means they are optional
   messages?: Array<Message>
+  error?: string; 
 };
