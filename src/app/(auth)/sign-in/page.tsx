@@ -1,6 +1,5 @@
 'use client';
 
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
@@ -18,8 +17,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/components/ui/use-toast';
 import { signInSchema } from '@/schemas/signInSchema';
+import dynamic from 'next/dynamic';
 
-export default function SignInForm() {
+// Ensure component is client-side only by wrapping it with dynamic import
+const SignInForm = () => {
   const router = useRouter();
 
   const form = useForm<z.infer<typeof signInSchema>>({
@@ -31,6 +32,7 @@ export default function SignInForm() {
   });
 
   const { toast } = useToast();
+
   const onSubmit = async (data: z.infer<typeof signInSchema>) => {
     const result = await signIn('credentials', {
       redirect: false,
@@ -106,4 +108,7 @@ export default function SignInForm() {
       </div>
     </div>
   );
-}
+};
+
+// Export the component wrapped in dynamic import with SSR disabled
+export default dynamic(() => Promise.resolve(SignInForm), { ssr: false });
