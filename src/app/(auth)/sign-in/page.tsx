@@ -42,8 +42,9 @@ const SignInForm = () => {
 
     if (result?.error) {
       if (result.error === 'CredentialsSignin') {
+        console.log('Login Failed Incorrect username or password ');
         toast({
-          title: 'Login Failed',
+          title: 'Login Failed ',
           description: 'Incorrect username or password',
           variant: 'destructive',
         });

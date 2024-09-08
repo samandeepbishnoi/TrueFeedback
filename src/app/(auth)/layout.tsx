@@ -1,7 +1,9 @@
+import { Toaster } from "@/components/ui/toaster"
 export const metadata = {
   title: 'TrueFeedback',
   description: 'A website for feedback',
 }
+
 
 export default function RootLayout({
   children,
@@ -10,7 +12,9 @@ export default function RootLayout({
 }) {
   return (
     <main lang="en">
-      <main>{children}</main>
+      <main>{children}
+        <Toaster />
+      </main>
     </main>
   )
 }
