@@ -1,0 +1,63 @@
+STEP WISE EXPALINATION
+
+1. using zod validation
+    ** create models folder in src containg User.ts (rest info in that file) (npm i mongoose)
+    ** created schemas folder containing several .ts files that used zod validation (npm i zod) 
+
+2. database connection
+    **nextjs is edge based framework things do not run all time they run on demand-
+        database connection is not all time(db connection should be checked simultaneously)
+    **lib folder is created in src where file dbConnect.ts is created
+        note - lib is needed for shadcn utils file is saved in lib
+
+3. how signup works and setup resend email feature
+    **work flow of signup (if username is taken but not verfied give it to other user)
+    **resend email (lib/resend.ts) for easy use of resend then (src/helpers/sendVerificationEmail.ts)
+    ** folder outside email for standard email template (needs npm i react-email)
+    **api key of resend-email is stored in .env
+    ** src/types/ApiResponse.ts to  standardize api response 
+    **src/app/api/sign-up/route.ts complete setup
+
+4. nextauth full 
+    **npm i next-auth
+    **app/api/auth/[...nextauth] fixed path route.ts and options.ts
+    **check documentation of nextauth (providers/credentials),(pages)and (callbacks) section 
+    ** special file created in types named next-auth.d.ts to modify existing datatypes  this give
+        sessionprovider in layout.tsx
+    **middleware is also needed for nextauth functionality (from nextjs documentation)
+    ** app/(auth)/sign-in for testing
+    **context folder / AuthProvider
+
+5. testing , otp , username unique
+    **postman api testing sign-up 
+    **check-username-unique route setup 
+    **verify-code route setup
+
+6. message api aggregation pipeline
+    **accept-messages route with post and get req
+    **getmessages route(aggregation pipelines of mongodb must be studied )
+    **send-message route complete
+
+7. AI integration
+    ** npm i ai openai
+    **suggest-messages route
+    **there was problem in selecting the ai model in suggest-messages route 
+
+8. Frontend integration
+    **npx shadcn@latest init -d (lib/utils) created automatically
+    **npx shadcn@latest add form (components) created automatically
+
+    **sign-up ,in page setup
+        -username types alphabetic it will continue to check for uniqueness so debounce is used
+        -npm install usehooks-ts
+
+9.pages  and components
+    **auth/verify/[username] , (app)/dashboard  ,u/[username]
+    **layout and page.tsx in (app)
+    **Navbar ans message crad components
+
+10. Dashboard ui 
+    **used react-hook-form /  useform / watch and setvalue
+
+
+11.todo :  fix mail and ai issue
